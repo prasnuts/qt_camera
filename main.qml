@@ -128,5 +128,44 @@ Window {
         }
     }
 
+    Timer {
+        id: timer
+        interval: 500
+        repeat: true
+        onTriggered: {
+            findAvailableCameras();
+        }
+    }
+
+    Component.onCompleted: {
+        if(!findAvailableCameras()) {
+            timer.start();
+        }
+    }
+
+    onCamerasFoundChanged: {
+        if(camerasFound){
+            timer.stop();
+        }
+    }
+
+    function findAvailableCameras() {
+        var camList = camHandler.getAvailableCameras();
+
+        if(camList.length === 0){
+            var message = "No streams available!\n\nPlease check your devices or connect a camera...";
+            labelError.text = message;
+            buttonOk.visible = false;
+        } else{
+            camerasFound = true;
+            labelError.visible = false;
+            buttonOk.visible = true;
+            for(var index = 0; index < camList.length; index += 2){
+                listModelCamera.append({ sourceString: camList[index] + "   ( " + camList[index+1] +" )", deviceId: camList[index+1]});
+            }
+        }
+        return camerasFound;
+    }
+
 
 }
