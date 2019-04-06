@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=camera finder
+Comment=Check camera availability
+TryExec=camera
+Exec=camera %F
+Icon=cameraIcon
+Keywords=utility;camera;
+Terminal=false
+Categories=Utility;
+StartupNotify=true
+MimeType=application/x-camera;
