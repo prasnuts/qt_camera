@@ -18,10 +18,10 @@ script:
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
-  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=./qt_camera -verbose=2
-  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage -qmldir=./qt_camera -verbose=2
+  - ./linuxdeployqt-continuous-x86_64.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmldir=./qt_camera -verbose=2
+  - ./linuxdeployqt-continuous-x86_64.AppImage ./appdir/usr/share/applications/*.desktop -appimage -qmldir=./qt_camera -verbose=2
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh camera_finder--x86_64.AppImage*
+  - bash upload.sh camera_finder*.AppImage*
 
