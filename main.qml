@@ -39,6 +39,12 @@ Window {
             model: listModelCamera
             delegate: cameraDelegate
 
+            Keys.onEnterPressed: {
+                showStream();
+            }
+            Keys.onReturnPressed: {
+                showStream();
+            }
         }
 
         ListModel {
@@ -75,6 +81,7 @@ Window {
                     onDoubleClicked: {
                         listViewCamera.forceActiveFocus();
                         listViewCamera.currentIndex = index;
+                        showStream();
                     }
                 }
             }
@@ -95,6 +102,9 @@ Window {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
 
+            onClicked: {
+                showStream();
+            }
         }
     }
 
@@ -167,5 +177,9 @@ Window {
         return camerasFound;
     }
 
-
+    function showStream() {
+        selectedDeviceId =  listViewCamera.currentItem.delegateDeviceId;
+        rectangleChecker.visible = false;
+        loader.sourceComponent = componentCamera;
+    }
 }
