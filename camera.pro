@@ -19,7 +19,7 @@ RESOURCES += qml.qrc
 
 unix {
     isEmpty(PREFIX) {
-        PREFIX = /home/samarakp/dev/qt/install
+        PREFIX = /usr/local
     }
 
     target.path = $$PREFIX/bin
